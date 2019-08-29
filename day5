@@ -1,0 +1,614 @@
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 2
+Server version: 5.5.61 MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use database softech
+ERROR 1049 (42000): Unknown database 'database'
+mysql> use database softech;
+ERROR 1049 (42000): Unknown database 'database'
+mysql> use softech;
+Database changed
+mysql> create table location(
+    -> locationid int,
+    -> city varchar(50),
+    -> city varchar(60),
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 4
+mysql> create table location(
+    -> locationid int,
+    -> city varchar(50),
+    -> adress varchar(50)
+    -> );
+Query OK, 0 rows affected (0.14 sec)
+
+mysql> describe softech;
+ERROR 1146 (42S02): Table 'softech.softech' doesn't exist
+mysql> describe location;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| locationid | int(11)     | YES  |     | NULL    |       |
+| city       | varchar(50) | YES  |     | NULL    |       |
+| adress     | varchar(50) | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+3 rows in set (0.01 sec)
+
+mysql> insert into location values
+    -> (1, 'mumbai',
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 2
+mysql> insert into location values
+    -> (1, 'mumbai', 'MBP'),
+    -> (2, 'Banglore', 'ITPL'),
+    -> (3, 'pune', 'hinjewadi'),
+    -> (4, 'Gurgaon', 'dlf2');
+Query OK, 4 rows affected (0.05 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> select * from location;
++------------+----------+-----------+
+| locationid | city     | adress    |
++------------+----------+-----------+
+|          1 | mumbai   | MBP       |
+|          2 | Banglore | ITPL      |
+|          3 | pune     | hinjewadi |
+|          4 | Gurgaon  | dlf2      |
++------------+----------+-----------+
+4 rows in set (0.00 sec)
+
+mysql> create table dept;
+ERROR 1113 (42000): A table must have at least 1 column
+mysql> create table dept(
+    -> deptid int,
+    -> dname varchar(50),
+    -> locid varchar(60)
+    -> );
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> insert into dept values
+    -> (101, 'sales', 1),
+    -> (102, 'HR', 3),
+    -> (103, 'Finance', 2),
+    -> (104, 'mktg', 3),
+    -> (105, 'ops', 4),
+    -> (106, 'it', 4);
+Query OK, 6 rows affected (0.03 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+mysql> select * from dept;
++--------+---------+-------+
+| deptid | dname   | locid |
++--------+---------+-------+
+|    101 | sales   | 1     |
+|    102 | HR      | 3     |
+|    103 | Finance | 2     |
+|    104 | mktg    | 3     |
+|    105 | ops     | 4     |
+|    106 | it      | 4     |
++--------+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> create table emp()
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1
+mysql> create table emp(
+    -> empid int, fname varchar(50), lname varchar(60), deptid int, mgrid int);
+Query OK, 0 rows affected (0.09 sec)
+
+mysql> describe dept;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| deptid | int(11)     | YES  |     | NULL    |       |
+| dname  | varchar(50) | YES  |     | NULL    |       |
+| locid  | varchar(60) | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> describe emp;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| empid  | int(11)     | YES  |     | NULL    |       |
+| fname  | varchar(50) | YES  |     | NULL    |       |
+| lname  | varchar(60) | YES  |     | NULL    |       |
+| deptid | int(11)     | YES  |     | NULL    |       |
+| mgrid  | int(11)     | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> insert into emp values
+    -> (1001, 'steven')
+    -> ;
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> (1001, 'steven', 'king', 105, null),
+    -> (1002, 'Neena', 'kocher', 105, 1003),
+    -> (1003, 'Nancy', 'Greenberg', 102, 1001),
+    -> (1004, 'Andrew', 'Lusk', 101, 1002);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '1001, 'steven', 'king', 105, null),
+(1002, 'Neena', 'kocher', 105, 1003),
+(1003,' at line 1
+mysql> insert into emp values
+    -> (1001, 'steven', 'king', 105, null),
+    -> (1002, 'Neena', 'kocher', 105, 1003),
+    -> (1003, 'Nancy', 'Greenberg', 102, 1001),
+    -> (1004, 'Andrew', 'Lusk', 101, 1002);
+Query OK, 4 rows affected (0.03 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> insert into emp values
+    -> (1005, 'Andy', 'Hilaman', 105, 1001);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> select * from emp;
++-------+--------+-----------+--------+-------+
+| empid | fname  | lname     | deptid | mgrid |
++-------+--------+-----------+--------+-------+
+|  1001 | steven | king      |    105 |  NULL |
+|  1002 | Neena  | kocher    |    105 |  1003 |
+|  1003 | Nancy  | Greenberg |    102 |  1001 |
+|  1004 | Andrew | Lusk      |    101 |  1002 |
+|  1005 | Andy   | Hilaman   |    105 |  1001 |
++-------+--------+-----------+--------+-------+
+5 rows in set (0.00 sec)
+
+mysql>
+mysql> SELECT DName, City, Addr
+    ->   FROM Dept INNER JOIN
+    ->        Location
+    -> ;
+ERROR 1054 (42S22): Unknown column 'Addr' in 'field list'
+mysql> SELECT DName, City, Addr
+    ->   FROM Dept INNER JOIN
+    ->        Location
+    ->     ON Dept.LocID = Location.LocID;
+ERROR 1054 (42S22): Unknown column 'Addr' in 'field list'
+mysql> SELECT DName, City, Address
+    ->   FROM dept INNER JOIN
+    ->        location
+    ->     ON dept.locID = location.locID;
+ERROR 1054 (42S22): Unknown column 'Address' in 'field list'
+mysql>     ON dept.locID = location.locID;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ON dept.locID = location.locID' at line 1
+mysql> SELECT DName, City, adress
+    ->   FROM dept INNER JOIN
+    ->        location
+    ->     ON dept.locID = location.locID;
+ERROR 1054 (42S22): Unknown column 'location.locID' in 'on clause'
+mysql>
+mysql> SELECT DName, City, adress
+    ->   FROM dept INNER JOIN
+    ->        location
+    ->        location;
++---------+----------+-----------+
+| DName   | City     | adress    |
++---------+----------+-----------+
+| sales   | mumbai   | MBP       |
+| sales   | Banglore | ITPL      |
+| sales   | pune     | hinjewadi |
+| sales   | Gurgaon  | dlf2      |
+| HR      | mumbai   | MBP       |
+| HR      | Banglore | ITPL      |
+| HR      | pune     | hinjewadi |
+| HR      | Gurgaon  | dlf2      |
+| Finance | mumbai   | MBP       |
+| Finance | Banglore | ITPL      |
+| Finance | pune     | hinjewadi |
+| Finance | Gurgaon  | dlf2      |
+| mktg    | mumbai   | MBP       |
+| mktg    | Banglore | ITPL      |
+| mktg    | pune     | hinjewadi |
+| mktg    | Gurgaon  | dlf2      |
+| ops     | mumbai   | MBP       |
+| ops     | Banglore | ITPL      |
+| ops     | pune     | hinjewadi |
+| ops     | Gurgaon  | dlf2      |
+| it      | mumbai   | MBP       |
+| it      | Banglore | ITPL      |
+| it      | pune     | hinjewadi |
+| it      | Gurgaon  | dlf2      |
++---------+----------+-----------+
+24 rows in set (0.00 sec)
+
+mysql>        SELECT DName, City, adress
+    ->   FROM dept INNER JOIN
+    ->        location
+    ->     ON dept.locID = location.locID;
+ERROR 1054 (42S22): Unknown column 'location.locID' in 'on clause'
+mysql> SELECT DName, City, adress
+    ->   FROM dept INNER JOIN
+    ->        location
+    ->     ON dept.locID = location.locID;
+ERROR 1054 (42S22): Unknown column 'location.locID' in 'on clause'
+mysql>
+mysql> select dname,city,adress from dept inner join location On dept.locid=location.locid;
+ERROR 1054 (42S22): Unknown column 'location.locid' in 'on clause'
+mysql> drop location;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'location' at line 1
+mysql> drop table location;
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> create table location;
+ERROR 1113 (42000): A table must have at least 1 column
+mysql> create table location(
+    -> locid int,
+    -> city varchar(50)
+    -> adress varchar (60)
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'adress varchar (60)' at line 4
+mysql> create table location(
+    -> locid int,
+    -> city varchar(50)
+    -> adress varchar (60)
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'adress varchar (60)
+)' at line 4
+mysql> create table location(
+    -> locid int,
+    -> city varchar(50),
+    -> adress varchar (60)
+    -> );
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> insert into location values
+    -> (1, 'Mumbai', 'MBP'),
+    -> (2, 'Banglore', 'ITP'),
+    -> (3, 'Pune', 'Hinjewadi'),
+    -> (4, 'Gurgao', 'DLF2'),
+    -> (5, 'Hydrabad', 'hydracity');
+Query OK, 5 rows affected (0.03 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> select dname, city, adress from dept inner join location on dept.locid=location.locid;
++---------+----------+-----------+
+| dname   | city     | adress    |
++---------+----------+-----------+
+| sales   | Mumbai   | MBP       |
+| HR      | Pune     | Hinjewadi |
+| Finance | Banglore | ITP       |
+| mktg    | Pune     | Hinjewadi |
+| ops     | Gurgao   | DLF2      |
+| it      | Gurgao   | DLF2      |
++---------+----------+-----------+
+6 rows in set (0.00 sec)
+
+mysql> select dname, city, adress from dept left outer join location on dept.locid=location.locid;
++---------+----------+-----------+
+| dname   | city     | adress    |
++---------+----------+-----------+
+| sales   | Mumbai   | MBP       |
+| HR      | Pune     | Hinjewadi |
+| Finance | Banglore | ITP       |
+| mktg    | Pune     | Hinjewadi |
+| ops     | Gurgao   | DLF2      |
+| it      | Gurgao   | DLF2      |
++---------+----------+-----------+
+6 rows in set (0.00 sec)
+
+mysql> select dname, city, adress from dept right outer join location on dept.locid=location.locid;
++---------+----------+-----------+
+| dname   | city     | adress    |
++---------+----------+-----------+
+| sales   | Mumbai   | MBP       |
+| Finance | Banglore | ITP       |
+| HR      | Pune     | Hinjewadi |
+| mktg    | Pune     | Hinjewadi |
+| ops     | Gurgao   | DLF2      |
+| it      | Gurgao   | DLF2      |
+| NULL    | Hydrabad | hydracity |
++---------+----------+-----------+
+7 rows in set (0.00 sec)
+
+mysql> select dname, city, adress from dept right outer join location on dept.locid=location.locid
+    -> where dname is null;
++-------+----------+-----------+
+| dname | city     | adress    |
++-------+----------+-----------+
+| NULL  | Hydrabad | hydracity |
++-------+----------+-----------+
+1 row in set (0.00 sec)
+
+mysql> select * from location;
++-------+----------+-----------+
+| locid | city     | adress    |
++-------+----------+-----------+
+|     1 | Mumbai   | MBP       |
+|     2 | Banglore | ITP       |
+|     3 | Pune     | Hinjewadi |
+|     4 | Gurgao   | DLF2      |
+|     5 | Hydrabad | hydracity |
++-------+----------+-----------+
+5 rows in set (0.00 sec)
+
+mysql> __display
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '__display' at line 1
+mysql> __display location without dept
+    -> select dname, city, adress from dept left outer join location on dept.locid=location.locid where city is null;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '__display location without dept
+select dname, city, adress from dept left outer ' at line 1
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql> __display all dept having loc and include only dept gurgon city
+    -> select dname, city, adress from dept inner join location on dept.locid=location.locid where city is 'gurgao';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '__display all dept having loc and include only dept gurgon city
+select dname, ci' at line 1
+mysql> select dname, city, adress from dept inner join location on dept.locid=location.locid where city is 'gurgao';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''gurgao'' at line 1
+mysql> select dname, city, adress from dept inner join location on dept.locid=location.locid where city ='gurgao';
++-------+--------+--------+
+| dname | city   | adress |
++-------+--------+--------+
+| ops   | Gurgao | DLF2   |
+| it    | Gurgao | DLF2   |
++-------+--------+--------+
+2 rows in set (0.00 sec)
+
+mysql> select dname,fname, lname, city, adress
+    -> from dept ineer join location
+    -> on dept.locid=location.locid
+    -> inner join emp
+    -> on dept.deptid=emp.deptid;
+ERROR 1054 (42S22): Unknown column 'dept.locid' in 'on clause'
+mysql> select dname,fname, lname, city, adress
+    -> from dept ineer join location
+    -> on dept.locid=location.locid
+    -> inner join emp
+    -> on dept.deptid=emp.deptid;
+ERROR 1054 (42S22): Unknown column 'dept.locid' in 'on clause'
+mysql> select dname,fname, lname, city, adress
+    -> from dept inner join location
+    -> on dept.deptid=emp.deptid;
+ERROR 1054 (42S22): Unknown column 'fname' in 'field list'
+mysql> select dname,fname, lname, city, adress
+    -> from dept inner join location
+    -> on dept.deptid=location.deptid;
+ERROR 1054 (42S22): Unknown column 'fname' in 'field list'
+mysql> select dname, city, adress
+    -> on dept.deptid=location.deptid;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'on dept.deptid=location.deptid' at line 2
+mysql> select dname,fname,lname,city,adress from dept inner join location on dept.locid=location.locid
+    -> inner join emp on dept.deptid=emp.deptid;
++-------+--------+-----------+--------+-----------+
+| dname | fname  | lname     | city   | adress    |
++-------+--------+-----------+--------+-----------+
+| sales | Andrew | Lusk      | Mumbai | MBP       |
+| HR    | Nancy  | Greenberg | Pune   | Hinjewadi |
+| ops   | steven | king      | Gurgao | DLF2      |
+| ops   | Neena  | kocher    | Gurgao | DLF2      |
+| ops   | Andy   | Hilaman   | Gurgao | DLF2      |
++-------+--------+-----------+--------+-----------+
+5 rows in set (0.00 sec)
+
+mysql>
+mysql>
+mysql>
+mysql> select dname ,
+    -> concat(fname, '', lname)as name, city,adress
+    -> from dept inner join location
+    -> on dept.locid=location.locid
+    -> inner join emp
+    -> on dept.deptid=emp.deptid;
++-------+----------------+--------+-----------+
+| dname | name           | city   | adress    |
++-------+----------------+--------+-----------+
+| sales | AndrewLusk     | Mumbai | MBP       |
+| HR    | NancyGreenberg | Pune   | Hinjewadi |
+| ops   | stevenking     | Gurgao | DLF2      |
+| ops   | Neenakocher    | Gurgao | DLF2      |
+| ops   | AndyHilaman    | Gurgao | DLF2      |
++-------+----------------+--------+-----------+
+5 rows in set (0.00 sec)
+
+mysql> select d.dname, cocat(e.fname,'',e.lname) as name, l.city,l.adress from dept d inner
+ join location l on d.locid=l.locid inner join
+    -> emp e on d.deptid = e.deptid;
+ERROR 1305 (42000): FUNCTION softech.cocat does not exist
+mysql> select d.dname, concat(e.fname,'',e.lname) as name, l.city,l.adress from dept d inne
+r join location l on d.locid=l.locid inner join
+    -> emp e on d.deptid = e.deptid;
++-------+----------------+--------+-----------+
+| dname | name           | city   | adress    |
++-------+----------------+--------+-----------+
+| sales | AndrewLusk     | Mumbai | MBP       |
+| HR    | NancyGreenberg | Pune   | Hinjewadi |
+| ops   | stevenking     | Gurgao | DLF2      |
+| ops   | Neenakocher    | Gurgao | DLF2      |
+| ops   | AndyHilaman    | Gurgao | DLF2      |
++-------+----------------+--------+-----------+
+5 rows in set (0.00 sec)
+
+mysql> emp e on d.deptid = e.deptid;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'emp e on d.deptid = e.deptid' at line 1
+mysql> alter table emp add column salary int;
+Query OK, 5 rows affected (0.19 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> insert into emp values (1005,'pamela',davis',null,1002,14000),
+    '> (1007,'rene','lopez',105,1001,18000),
+    '> (1009,'sue','fisher',105,1001,11000),
+    '> (1008,'tanya','rff',105,1001,10000);
+    '> ;
+    '>
+
+
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 3
+Server version: 5.5.61 MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use softech;
+Database changed
+mysql> select * from emp;
++-------+--------+-----------+--------+-------+--------+
+| empid | fname  | lname     | deptid | mgrid | salary |
++-------+--------+-----------+--------+-------+--------+
+|  1001 | steven | king      |    105 |  NULL |   NULL |
+|  1002 | Neena  | kocher    |    105 |  1003 |   NULL |
+|  1003 | Nancy  | Greenberg |    102 |  1001 |   NULL |
+|  1004 | Andrew | Lusk      |    101 |  1002 |   NULL |
+|  1005 | Andy   | Hilaman   |    105 |  1001 |   NULL |
++-------+--------+-----------+--------+-------+--------+
+5 rows in set (0.00 sec)
+
+mysql> insert into emp values
+    -> (1005, 'pamela', 'davis',null,1002,1400)
+    -> (1007, 'Rense', 'lopez',105,1001,18000),
+    -> (1009, 'sue', 'fisher',105,1001,11000),
+    -> (1008, 'Tanya', 'rff',105,1001,10000);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(1007, 'Rense', 'lopez',105,1001,18000),
+(1009, 'sue', 'fisher',105,1001,11000),' at line 3
+mysql> insert into emp values
+    -> (1005, 'pamela', 'davis',null,1002,14000),
+    -> (1008, 'Tanya', 'rff',105,1001,10000);
+Query OK, 2 rows affected (0.03 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> insert into emp values
+    -> (1007, 'Rense', 'lopez',105,1001,18000),
+    -> (1009, 'sue', 'fisher',105,1001,11000);
+Query OK, 2 rows affected (0.02 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> select * from emp;
++-------+--------+-----------+--------+-------+--------+
+| empid | fname  | lname     | deptid | mgrid | salary |
++-------+--------+-----------+--------+-------+--------+
+|  1001 | steven | king      |    105 |  NULL |   NULL |
+|  1002 | Neena  | kocher    |    105 |  1003 |   NULL |
+|  1003 | Nancy  | Greenberg |    102 |  1001 |   NULL |
+|  1004 | Andrew | Lusk      |    101 |  1002 |   NULL |
+|  1005 | Andy   | Hilaman   |    105 |  1001 |   NULL |
+|  1005 | pamela | davis     |   NULL |  1002 |  14000 |
+|  1008 | Tanya  | rff       |    105 |  1001 |  10000 |
+|  1007 | Rense  | lopez     |    105 |  1001 |  18000 |
+|  1009 | sue    | fisher    |    105 |  1001 |  11000 |
++-------+--------+-----------+--------+-------+--------+
+9 rows in set (0.00 sec)
+
+mysql> select d.dname, concat(e.fname,'',e.lname) as empname from dept d right outer join emp e on d.deptid=e.deptid;
++-------+----------------+
+| dname | empname        |
++-------+----------------+
+| ops   | stevenking     |
+| ops   | Neenakocher    |
+| HR    | NancyGreenberg |
+| sales | AndrewLusk     |
+| ops   | AndyHilaman    |
+| NULL  | pameladavis    |
+| ops   | Tanyarff       |
+| ops   | Renselopez     |
+| ops   | suefisher      |
++-------+----------------+
+9 rows in set (0.00 sec)
+
+mysql> select concat(emp.fname,'',emp.lname)as empname,concat(mgr.fname,'','lname')as empname,concat(mgr.fname,'',mgrfname) as mgrname from emp emp inner join emp mgr on emp.mgrid=mgr.empid;
+ERROR 1054 (42S22): Unknown column 'mgrfname' in 'field list'
+mysql> select concat(emp.fname,'',emp.lname)as empname,concat(mgr.fname,'','lname')as empname,concat(mgr.fname,'',mg.lname) as mgrname from emp emp inner join emp mgr on emp.mgrid=mgr.empid;
+ERROR 1054 (42S22): Unknown column 'mg.lname' in 'field list'
+mysql> select concat(emp.fname,'',emp.lname)as empname,concat(mgr.fname,'','lname')as empname,concat(mgr.fname,'',mgr.lname) as mgrname from emp emp inner join emp mgr on emp.mgrid=mgr.empid;
++----------------+-------------+----------------+
+| empname        | empname     | mgrname        |
++----------------+-------------+----------------+
+| NancyGreenberg | stevenlname | stevenking     |
+| AndyHilaman    | stevenlname | stevenking     |
+| Tanyarff       | stevenlname | stevenking     |
+| Renselopez     | stevenlname | stevenking     |
+| suefisher      | stevenlname | stevenking     |
+| AndrewLusk     | Neenalname  | Neenakocher    |
+| pameladavis    | Neenalname  | Neenakocher    |
+| Neenakocher    | Nancylname  | NancyGreenberg |
++----------------+-------------+----------------+
+8 rows in set (0.00 sec)
+
+mysql> select concat(emp.fname,'',emp.lname)as empname,concat(mgr.fname,'',mgr.lname)as empname,concat(mgr.fname,'',mgr.lname) as mgrname from emp emp inner join emp mgr on emp.mgrid=mgr.empid;
++----------------+----------------+----------------+
+| empname        | empname        | mgrname        |
++----------------+----------------+----------------+
+| NancyGreenberg | stevenking     | stevenking     |
+| AndyHilaman    | stevenking     | stevenking     |
+| Tanyarff       | stevenking     | stevenking     |
+| Renselopez     | stevenking     | stevenking     |
+| suefisher      | stevenking     | stevenking     |
+| AndrewLusk     | Neenakocher    | Neenakocher    |
+| pameladavis    | Neenakocher    | Neenakocher    |
+| Neenakocher    | NancyGreenberg | NancyGreenberg |
++----------------+----------------+----------------+
+8 rows in set (0.00 sec)
+
+mysql> select concat(emp.fname,'',emp.lname)as empname,concat(mgr.fname.''mgr.lname)as mgrname from emp emp left outer join emp on emp.mgrid=mgr.empid;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '''mgr.lname)as mgrname from emp emp left outer join emp on emp.mgrid=mgr.empid' at line 1
+mysql> select concat(emp.fname,'',emp.lname)as empname,concat(mgr.fname,'',mgr.lname)as mgrname from emp emp left outer join emp on emp.mgrid=mgr.empid;
+ERROR 1066 (42000): Not unique table/alias: 'emp'
+mysql> select concat(emp.fname,'',emp.lname)as empname,concat(mgr.fname,'',mgr.lname)as mgrname from emp Emp left outer join emp on emp.mgrid=mgr.empid;
+ERROR 1066 (42000): Not unique table/alias: 'emp'
+mysql>
+mysql> select concat(emp.fname,'',emp.lname)as empname,concat(mgr.fname,'',mgr.lname)as mgrname from e emp left outer join emp on emp.mgrid=mgr.empid;
+ERROR 1066 (42000): Not unique table/alias: 'emp'
+mysql>
+mysql> select concat(emp.fname,'',emp.lname)as empname,concat(mgr.fname,'',mgr.lname)as mgrname from emp e left outer join emp mgr on emp.mgrid=mgr.empid;
+ERROR 1054 (42S22): Unknown column 'emp.fname' in 'field list'
+mysql> select concat(emp.fname,'',emp.lname)as empname,concat(mgr.fname,'',mgr.lname)as mgrname from e emp left outer join emp mgr on emp.mgrid=mgr.empid;
+ERROR 1146 (42S02): Table 'softech.e' doesn't exist
+mysql> select concat(emp.fname,'',emp.lname)as empname,concat(mgr.fname,'',mgr.lname)as mgrname from emp emp left outer join emp mgr on emp.mgrid=mgr.empid;
++----------------+----------------+
+| empname        | mgrname        |
++----------------+----------------+
+| stevenking     | NULL           |
+| Neenakocher    | NancyGreenberg |
+| NancyGreenberg | stevenking     |
+| AndrewLusk     | Neenakocher    |
+| AndyHilaman    | stevenking     |
+| pameladavis    | Neenakocher    |
+| Tanyarff       | stevenking     |
+| Renselopez     | stevenking     |
+| suefisher      | stevenking     |
++----------------+----------------+
+9 rows in set (0.00 sec)
+
+mysql> select concat(emp.fname,'',emp.lname)as empname,concat(mgr.fname,'',mgr.lname)as mgrname from emp emp left outer join emp mgr on emp.mgrid=mgr.empid where emp.mgrid is null;
++------------+---------+
+| empname    | mgrname |
++------------+---------+
+| stevenking | NULL    |
++------------+---------+
+1 row in set (0.00 sec)
+
+mysql> select concat(fname,'',lname)as empname from emp where salary=(select max(salary)from emp);
++------------+
+| empname    |
++------------+
+| Renselopez |
++------------+
+1 row in set (0.03 sec)
+
+mysql> select concat(fname,'',lname)as empname from emp where salary=(select max(salary)from emp);
++------------+
+| empname    |
++------------+
+| Renselopez |
++------------+
+1 row in set (3.99 sec)
+
+mysql>
