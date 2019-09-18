@@ -1,0 +1,30 @@
+                                 Thread3 x=new Thread3();
+		Thread3 y=new Thread3();
+		Thread3 z=new Thread3();
+		
+		Thread t1 = new Thread(x);
+		Thread t2 = new Thread(x);
+		Thread t3 = new Thread(x);
+		
+		t1.start();
+		t2.start();
+		t3.start();
+
+
+
+
+public class Thread3 implements Runnable{
+	
+	
+	 public synchronized  void run()
+	{
+		for(int i=0;i<=5;i++)
+			
+			System.out.println(i);
+		
+	}
+	
+	
+	
+
+}

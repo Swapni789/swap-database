@@ -1,0 +1,46 @@
+public class Assignment1 {
+
+	public static void main(String[] args) {
+Thread5 x=new Thread5();
+
+		Thread5 y=new Thread5();
+		
+		Thread t4=new Thread(x);
+		Thread t5=new Thread(x);
+		
+		t4.start();
+		t5.start();
+		t4.setName("first");
+		t5.setName("second");
+	
+		
+	}
+
+}
+
+public class Thread5 implements Runnable{
+	
+	public void run()
+	{
+		if(Thread.currentThread().getName().equals("first")){
+			disp1();
+		}else if(Thread.currentThread().getName().equals("second"))
+		
+		disp2();
+		
+	}
+	
+	public synchronized void disp1(){
+      for(int i=1;i<=50;i++)
+			
+			System.out.println(i);
+		
+	}
+	
+	public synchronized void disp2(){
+	      for(int j=50;j>=1;j--)
+				
+				System.out.println(j);
+
+}
+}

@@ -1,0 +1,58 @@
+public class Assignment1 {
+
+	public static void main(String[] args) {
+
+
+
+		Thread4 x=new Thread4();
+		Thread4 y=new Thread4();	
+		
+		Thread r=new Thread(x);
+		
+		Thread r2=new Thread(y);
+		
+		r.start();
+		r2.start();
+				
+	}
+
+}
+
+public class Thread4 implements Runnable {
+	
+
+	 public void run()
+	{
+		disp1();
+	}
+	 
+	synchronized static void disp1(){
+		
+           for(int i=0;i<=10;i++)
+			
+			System.out.println(i);
+	
+	 }
+}
+
+////////////////////  By Using Synchronized Block ///////////////////////////////
+
+
+public class Thread4 implements Runnable {
+	
+
+	 public void run()
+	{
+		disp1();
+	}
+	 
+static void disp1(){
+	synchronized(Thread4.class){
+		   for(int i=0;i<=10;i++)	
+				System.out.println(i);
+		 }
+	System.out.println("Sudbfc");
+	
+	}
+        }
+
